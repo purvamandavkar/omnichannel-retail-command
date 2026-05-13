@@ -1,0 +1,72 @@
+{
+  "outOfStockItems": 0,
+  "overstockValue": 714.7,
+  "avgDaysToSell": 28.2,
+  "fulfillmentRate": 94.7,
+  "overstockPercent": 3.7,
+  "overstockTarget": 4.2,
+  "optimalRange": {
+    "min": 97.5,
+    "max": 99
+  },
+  "demandForecast": {
+    "labels": [
+      "AUG",
+      "SEP",
+      "OCT"
+    ],
+    "historical": [
+      124,
+      138,
+      142
+    ],
+    "predictive": [
+      128,
+      145,
+      156
+    ]
+  },
+  "recommendations": [
+    {
+      "id": 1,
+      "product": "Envelopes",
+      "urgency": "CRITICAL",
+      "action": "Immediate reorder"
+    },
+    {
+      "id": 2,
+      "product": "Tape",
+      "urgency": "CRITICAL",
+      "action": "Immediate reorder"
+    },
+    {
+      "id": 3,
+      "product": "Pens",
+      "urgency": "CRITICAL",
+      "action": "Immediate reorder"
+    }
+  ],
+  "quickReport": [
+    {
+      "product": "Envelopes",
+      "status": "CRITICAL",
+      "currentStock": 10,
+      "growth": "+13.3%",
+      "trend": "Medium"
+    },
+    {
+      "product": "Tape",
+      "status": "CRITICAL",
+      "currentStock": 8,
+      "growth": "+0.6%",
+      "trend": "Medium"
+    },
+    {
+      "product": "Pens",
+      "status": "CRITICAL",
+      "currentStock": 6,
+      "growth": "+11.7%",
+      "trend": "High"
+    }
+  ]
+}

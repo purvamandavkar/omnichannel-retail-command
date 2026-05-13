@@ -1,0 +1,37 @@
+{
+  "customerLtv": 199,
+  "repeatPurchaseRate": 79.4,
+  "churnRisk": "High",
+  "customerSegments": [
+    {
+      "name": "Consumer",
+      "percentage": 5,
+      "clv": 31
+    },
+    {
+      "name": "Corporate",
+      "percentage": 57,
+      "clv": 339
+    },
+    {
+      "name": "Home Office",
+      "percentage": 38,
+      "clv": 225
+    }
+  ],
+  "avgDaysBetweenPurchases": 30,
+  "atRiskCustomers": [
+    {
+      "id": "C10042",
+      "name": "Sarah Johnson",
+      "lastPurchase": "2025-03-10",
+      "totalSpent": 890
+    },
+    {
+      "id": "C10221",
+      "name": "Michael Chen",
+      "lastPurchase": "2025-02-28",
+      "totalSpent": 1240
+    }
+  ]
+}

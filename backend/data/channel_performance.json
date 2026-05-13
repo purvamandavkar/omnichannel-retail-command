@@ -1,0 +1,88 @@
+{
+  "omniChannelGrowth": 19.6,
+  "omniChannelGrowthChange": 4.4,
+  "totalConvRate": 5.6,
+  "totalConvRateChange": 0.2,
+  "avgCac": 14.65,
+  "avgCacChange": -2.3,
+  "activeChannels": 3,
+  "channelHealthIndex": {
+    "ownedWeb": {
+      "velocity": 73.00444719655006,
+      "retention": 64.15170426654034,
+      "growth": 89.36149808647446,
+      "margin": 59.966140416486084,
+      "reach": 87.90401964464962
+    },
+    "marketplaces": {
+      "velocity": 41.21641006649269,
+      "retention": 53.26439119703775,
+      "growth": 60.55824664791603,
+      "margin": 46.800460152777774,
+      "reach": 80.3644392865761
+    }
+  },
+  "comparativePerformance": [
+    {
+      "channel": "Standard Class",
+      "conversionRate": 6.8,
+      "aov": 173
+    },
+    {
+      "channel": "Second Class",
+      "conversionRate": 6.7,
+      "aov": 190
+    },
+    {
+      "channel": "First Class",
+      "conversionRate": 10.1,
+      "aov": 118
+    }
+  ],
+  "customerAcquisitionCost": {
+    "webStore": 14.2,
+    "mobileApp": 22.5,
+    "physical": 8.3,
+    "marketplace": 18.9
+  },
+  "recentActivities": [
+    {
+      "text": "New promotion live on Amazon Marketplace.",
+      "time": "2 mins ago",
+      "type": "Marketing"
+    },
+    {
+      "text": "Inventory sync delay: New York Flagship Store.",
+      "time": "15 mins ago",
+      "type": "Logistics"
+    },
+    {
+      "text": "Mobile App conversion peak detected in EMEA.",
+      "time": "42 mins ago",
+      "type": "Sales"
+    }
+  ],
+  "channelDrilldown": [
+    {
+      "name": "Standard Class",
+      "revenueShare": 5.2,
+      "refundRate": 1.8,
+      "customerLtv": 6995,
+      "status": "OPTIMAL"
+    },
+    {
+      "name": "Second Class",
+      "revenueShare": 57,
+      "refundRate": 3.3,
+      "customerLtv": 3054,
+      "status": "STEADY"
+    },
+    {
+      "name": "First Class",
+      "revenueShare": 37.8,
+      "refundRate": 2.3,
+      "customerLtv": 6851,
+      "status": "REVIEW REQUIRED"
+    }
+  ]
+}

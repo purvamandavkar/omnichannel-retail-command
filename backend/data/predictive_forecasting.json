@@ -1,0 +1,27 @@
+{
+  "nextMonthSalesPrediction": 964,
+  "predictionLowerBound": 887,
+  "predictionUpperBound": 1041,
+  "promotionLiftEstimate": 21.3,
+  "recommendedReorderSkus": [
+    {
+      "sku": "SKU-1",
+      "name": "Envelopes",
+      "currentStock": 10,
+      "predictedOutOfStockDays": 13
+    },
+    {
+      "sku": "SKU-2",
+      "name": "Tape",
+      "currentStock": 8,
+      "predictedOutOfStockDays": 10
+    },
+    {
+      "sku": "SKU-3",
+      "name": "Pens",
+      "currentStock": 6,
+      "predictedOutOfStockDays": 17
+    }
+  ],
+  "whatIfDiscountImpact": 0
+}

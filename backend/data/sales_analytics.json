@@ -1,0 +1,77 @@
+{
+  "grossRevenue": 5955.48,
+  "grossRevenueGrowth": 12.3,
+  "avgOrderValue": 198.52,
+  "avgOrderValueChange": -2.1,
+  "conversionRate": 4.95,
+  "conversionRateChange": -0.6,
+  "omnichannelMetric": 73,
+  "categorySales": {
+    "labels": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY"
+    ],
+    "series": {
+      "Apparel": [
+        12500,
+        13200,
+        14100,
+        13800,
+        15200
+      ],
+      "Electronics": [
+        18400,
+        19200,
+        20500,
+        21800,
+        23400
+      ],
+      "Home": [
+        8900,
+        9200,
+        9700,
+        10100,
+        10800
+      ]
+    }
+  },
+  "channelSplit": {
+    "onlineMarketplace": 64,
+    "physicalRetail": 36
+  },
+  "keyInsight": "Online sales have grown by 18% since loyalty program integration.",
+  "regionalData": {
+    "northAmerica": 5955.48,
+    "europe": 0,
+    "asiaPacific": 0
+  },
+  "topProducts": [
+    {
+      "id": "P1",
+      "name": "Laptop",
+      "category": "General",
+      "unitsSold": 25,
+      "revenue": 1250,
+      "status": "Best Seller"
+    },
+    {
+      "id": "P2",
+      "name": "Smartphone",
+      "category": "General",
+      "unitsSold": 15,
+      "revenue": 799,
+      "status": "Trending"
+    },
+    {
+      "id": "P3",
+      "name": "Desk",
+      "category": "General",
+      "unitsSold": 11,
+      "revenue": 550,
+      "status": "Stable"
+    }
+  ]
+}

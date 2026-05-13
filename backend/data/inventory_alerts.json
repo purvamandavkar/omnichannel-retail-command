@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "product": "Smartphone",
+    "location": "East Warehouse",
+    "urgency": "RESTOCK NOW",
+    "stock": 1
+  },
+  {
+    "id": 2,
+    "product": "Laptop",
+    "location": "West Warehouse",
+    "urgency": "RESTOCK NOW",
+    "stock": 1
+  },
+  {
+    "id": 3,
+    "product": "Desk",
+    "location": "East Warehouse",
+    "urgency": "RESTOCK NOW",
+    "stock": 1
+  },
+  {
+    "id": 4,
+    "product": "Shelf",
+    "location": "West Warehouse",
+    "urgency": "RESTOCK NOW",
+    "stock": 1
+  },
+  {
+    "id": 5,
+    "product": "Tablet",
+    "location": "East Warehouse",
+    "urgency": "RESTOCK NOW",
+    "stock": 1
+  }
+]

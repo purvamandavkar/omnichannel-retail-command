@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Standard Class",
+    "type": "STANDARD_CLASS",
+    "share": 0.0521
+  },
+  {
+    "name": "Second Class",
+    "type": "SECOND_CLASS",
+    "share": 0.5701
+  },
+  {
+    "name": "First Class",
+    "type": "FIRST_CLASS",
+    "share": 0.3778
+  }
+]
