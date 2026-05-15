@@ -1,15 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { getDashboardData, randomizeDashboard } from './dataManager.js';
-import {
-    getRealTimeSales,
-    getTopProducts,
-    getChannelPerformance,
-    getInventoryAlerts,
-    insertSale,
-    getTotalSales,
-    getOrderCount
-} from './db.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Original dashboard endpoints (mock data fallback)
+// Dashboard endpoints
 app.get('/api/dashboard', async(req, res) => {
     try {
         const data = await getDashboardData();
@@ -34,62 +25,6 @@ app.post('/api/randomize', async(req, res) => {
         res.json({ message: 'ok', data: newData });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// Database endpoints (real data)
-app.get('/api/db/sales', (req, res) => {
-    try {
-        const data = getRealTimeSales();
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get('/api/db/top-products', (req, res) => {
-    try {
-        const data = getTopProducts();
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get('/api/db/channels', (req, res) => {
-    try {
-        const data = getChannelPerformance();
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get('/api/db/alerts', (req, res) => {
-    try {
-        const data = getInventoryAlerts();
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get('/api/db/stats', (req, res) => {
-    try {
-        const totalSales = getTotalSales();
-        const orderCount = getOrderCount();
-        res.json({ totalSales, orderCount });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.post('/api/db/sale', (req, res) => {
-    try {
-        const result = insertSale(req.body);
-        res.json({ message: 'Sale added', id: result.lastInsertRowid });
-    } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
