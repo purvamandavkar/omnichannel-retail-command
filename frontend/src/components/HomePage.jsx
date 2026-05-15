@@ -235,10 +235,11 @@ const HomePage = () => {
               Request Platform Deck
             </button>
           </div>
+          {/*footer will go here */ }
+          <Footer/>
         </div>
 
-        {/* Footer */}
-        <Footer />
+        
       </div>
     </div>
   );

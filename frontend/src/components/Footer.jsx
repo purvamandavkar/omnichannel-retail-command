@@ -1,25 +1,28 @@
-// components/Footer.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { TrendingUp, Activity } from 'lucide-react';
 
 const Footer = () => {
   const { currentTheme } = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleModuleClick = (tab) => {
-    if (window.location.pathname === '/dashboard') {
-      window.scrollTo(0, 0);
+    console.log('Footer clicked:', tab);
+    
+    if (location.pathname === '/dashboard') {
+      // Already on dashboard – dispatch event
       window.dispatchEvent(new CustomEvent('changeTab', { detail: { tab } }));
+      window.scrollTo(0, 0);
     } else {
-      navigate('/dashboard');
-      sessionStorage.setItem('pendingTab', tab);
+      // Navigate to dashboard with state
+      navigate('/dashboard', { state: { activeTab: tab } });
     }
   };
 
   return (
-    <footer className={`${currentTheme.cardDark} border-t border-white/10 mt-auto`}>
+    <footer className={`${currentTheme.cardDark} border-t border-white/10 mt-auto w-full`}>
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
@@ -34,10 +37,12 @@ const Footer = () => {
           <div>
             <h4 className={`font-semibold ${currentTheme.text} mb-3`}>MODULES</h4>
             <ul className="space-y-2">
-              <li><button onClick={() => handleModuleClick('overview')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition`}>Executive Overview</button></li>
-              <li><button onClick={() => handleModuleClick('sales')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition`}>Sales Analytics</button></li>
-              <li><button onClick={() => handleModuleClick('inventory')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition`}>Inventory Optimization</button></li>
-              <li><button onClick={() => handleModuleClick('channels')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition`}>Channel Performance</button></li>
+              <li><button onClick={() => handleModuleClick('overview')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Executive Overview</button></li>
+              <li><button onClick={() => handleModuleClick('sales')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Sales Analytics</button></li>
+              <li><button onClick={() => handleModuleClick('inventory')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Inventory Optimization</button></li>
+              <li><button onClick={() => handleModuleClick('channels')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Channel Performance</button></li>
+              <li><button onClick={() => handleModuleClick('customer')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Customer 360°</button></li>
+              <li><button onClick={() => handleModuleClick('forecast')} className={`${currentTheme.textMuted} hover:${currentTheme.text} text-sm transition text-left w-full`}>Predictive Forecasting</button></li>
             </ul>
           </div>
 
