@@ -1,5 +1,4 @@
 // frontend/src/components/Dashboard.jsx
-// frontend/src/components/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +15,7 @@ import ChannelPerformance from './ChannelPerformance';
 import CustomerInsights from './CustomerInsights';
 import PredictiveForecasting from './PredictiveForecasting';
 import ThemeSwitcher from './ThemeSwitcher';
+import Footer from './Footer';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -27,8 +27,10 @@ const Dashboard = () => {
   const [lastUpdate, setLastUpdate] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchDashboard = async () => {
+    setError(false);
     try {
       const response = await axios.get('/api/dashboard');
       setDashboardData(response.data);
@@ -36,6 +38,7 @@ const Dashboard = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      setError(true);
       setLoading(false);
     }
   };
@@ -61,6 +64,18 @@ const Dashboard = () => {
   useEffect(() => { fetchDashboard(); }, []);
 
   if (loading) return <div className={`min-h-screen flex justify-center items-center bg-gradient-to-br ${currentTheme.gradient}`}><div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div></div>;
+
+  if (error || !dashboardData) {
+    return (
+      <div className={`min-h-screen flex flex-col justify-center items-center bg-gradient-to-br ${currentTheme.gradient}`}>
+        <div className={`${currentTheme.card} p-8 rounded-xl text-center max-w-md`}>
+          <h2 className={`text-xl font-bold ${currentTheme.text} mb-2`}>Unable to load dashboard</h2>
+          <p className={`${currentTheme.textMuted} mb-4`}>Please check that the backend server is running on port 5000.</p>
+          <button onClick={fetchDashboard} className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Retry</button>
+        </div>
+      </div>
+    );
+  }
 
   const { kpis, chartData, topChannels, inventoryAlerts, salesAnalytics, inventoryOptimization, channelPerformance, predictiveForecasting, customerInsights } = dashboardData;
 
@@ -153,15 +168,11 @@ const Dashboard = () => {
           {activeTab === 'customer' && customerInsights && <CustomerInsights data={customerInsights} />}
           {activeTab === 'forecast' && predictiveForecasting && <PredictiveForecasting data={predictiveForecasting} />}
         </div>
+        # Footer
+          <Footer />
+          
 
-        {/* Footer */}
-        <div className={`mt-8 ${currentTheme.cardDark} p-4 flex justify-between items-center rounded-xl`}>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"><span className="text-xs font-bold text-white">AS</span></div>
-            <div><p className={`text-sm font-medium ${currentTheme.text}`}>Alex Sterling</p><p className={`text-xs ${currentTheme.textMuted}`}>Chief Operations Officer</p></div>
-          </div>
-          <div className="text-right"><p className={`text-[10px] ${currentTheme.textMuted}`}>Real-time dynamic metrics • AI simulated shifts</p></div>
-        </div>
+        
       </div>
     </div>
   );
