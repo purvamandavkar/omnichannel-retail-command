@@ -61,7 +61,22 @@ const Dashboard = () => {
     navigate('/');
   };
 
-  useEffect(() => { fetchDashboard(); }, []);
+  // Listen for tab change from footer
+useEffect(() => {
+  const handleTabChange = (event) => {
+    setActiveTab(event.detail.tab);
+  };
+  window.addEventListener('changeTab', handleTabChange);
+  
+  // Check sessionStorage for pending tab (if coming from homepage)
+  const pendingTab = sessionStorage.getItem('pendingTab');
+  if (pendingTab) {
+    setActiveTab(pendingTab);
+    sessionStorage.removeItem('pendingTab');
+  }
+  
+  return () => window.removeEventListener('changeTab', handleTabChange);
+}, []);
 
   if (loading) return <div className={`min-h-screen flex justify-center items-center bg-gradient-to-br ${currentTheme.gradient}`}><div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div></div>;
 
@@ -78,7 +93,7 @@ const Dashboard = () => {
   }
 
   const { kpis, chartData, topChannels, inventoryAlerts, salesAnalytics, inventoryOptimization, channelPerformance, predictiveForecasting, customerInsights } = dashboardData;
-
+  
   return (
     <div className={`min-h-screen bg-gradient-to-br ${currentTheme.gradient}`}>
       <div className="container mx-auto px-4 py-6 max-w-7xl">
@@ -168,9 +183,10 @@ const Dashboard = () => {
           {activeTab === 'customer' && customerInsights && <CustomerInsights data={customerInsights} />}
           {activeTab === 'forecast' && predictiveForecasting && <PredictiveForecasting data={predictiveForecasting} />}
         </div>
-        # Footer
-          <Footer />
+         {/* Footer */ }
+         <Footer/>
           
+
 
         
       </div>

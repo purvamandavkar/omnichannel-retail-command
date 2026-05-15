@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
+import Footer from './Footer';
 
 const HomePage = () => {
   const { user, logout } = useAuth();
@@ -237,11 +238,7 @@ const HomePage = () => {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 text-center">
-          <p className={`${currentTheme.textMuted} text-xs`}>
-            © 2026 Omniscient Lens. All rights reserved.
-          </p>
-        </div>
+        <Footer />
       </div>
     </div>
   );
