@@ -17,7 +17,9 @@ echo "npm-debug.log*" >> .gitignore
 echo "" >> .gitignore
 echo "# Database files (optional - remove if you want to include them)" >> .gitignore
 echo "*.db" >> .gitignore
-echo "backend/data/*.db" >> .gitignore
+# Instead, ensure the data folder is tracked:
+!backend/data/
+!backend/data/*.db
 echo "" >> .gitignore
 echo "# OS files" >> .gitignore
 echo ".DS_Store" >> .gitignore
