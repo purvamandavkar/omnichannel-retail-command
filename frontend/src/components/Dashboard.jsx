@@ -17,6 +17,8 @@ import CustomerInsights from './CustomerInsights';
 import PredictiveForecasting from './PredictiveForecasting';
 import ThemeSwitcher from './ThemeSwitcher';
 import Footer from './Footer';
+import ExportReports from './ExportReports';
+import RealTimeFeed from './RealTimeFeed';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -166,6 +168,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        {/* Real-time feed */}
+           <RealTimeFeed />
+
+
 
         {/* Tabs */}
         <div className="border-b border-white/20 mb-6 overflow-x-auto">
@@ -234,31 +240,99 @@ const Dashboard = () => {
         </div>
 
         {/* Tab Content */}
-        <div>
-          {activeTab === 'overview' && (
-            <ExecutiveOverview
-              kpis={kpis}
-              chartData={chartData}
-              topChannels={topChannels}
-              inventoryAlerts={inventoryAlerts}
-              user={user}
-            />
-          )}
-          {activeTab === 'sales' && salesAnalytics && <SalesAnalytics data={salesAnalytics} />}
-          {activeTab === 'inventory' && inventoryOptimization && (
-            <div className="space-y-6">
-              <InventoryOptimizationPanel data={inventoryOptimization} />
-              <DemandForecastChart forecastData={inventoryOptimization.demandForecast} />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <RecommendationsList recommendations={inventoryOptimization.recommendations} />
-                <InventoryQuickReportTable quickReport={inventoryOptimization.quickReport} />
-              </div>
-            </div>
-          )}
-          {activeTab === 'channels' && channelPerformance && <ChannelPerformance data={channelPerformance} />}
-          {activeTab === 'customer' && customerInsights && <CustomerInsights data={customerInsights} />}
-          {activeTab === 'forecast' && predictiveForecasting && <PredictiveForecasting data={predictiveForecasting} />}
+        {/* Tab Content */}
+<div>
+  {/* Executive Overview Tab */}
+  {activeTab === 'overview' && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={kpis ? Object.entries(kpis).map(([key, value]) => ({ Metric: key, Value: value })) : []} 
+          title="Executive KPIs" 
+          filename="executive_kpis" 
+        />
+      </div>
+      <ExecutiveOverview kpis={kpis} chartData={chartData} topChannels={topChannels} inventoryAlerts={inventoryAlerts} user={user} />
+    </>
+  )}
+
+  {/* Sales Analytics Tab */}
+  {activeTab === 'sales' && salesAnalytics && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={salesAnalytics.topProducts || []} 
+          title="Top Products" 
+          filename="top_products" 
+        />
+      </div>
+      <SalesAnalytics data={salesAnalytics} />
+    </>
+  )}
+
+  {/* Inventory Optimization Tab */}
+  {activeTab === 'inventory' && inventoryOptimization && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={inventoryOptimization.quickReport || []} 
+          title="Inventory Report" 
+          filename="inventory_report" 
+        />
+      </div>
+      <div className="space-y-6">
+        <InventoryOptimizationPanel data={inventoryOptimization} />
+        <DemandForecastChart forecastData={inventoryOptimization.demandForecast} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <RecommendationsList recommendations={inventoryOptimization.recommendations} />
+          <InventoryQuickReportTable quickReport={inventoryOptimization.quickReport} />
         </div>
+      </div>
+    </>
+  )}
+
+  {/* Channel Performance Tab */}
+  {activeTab === 'channels' && channelPerformance && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={channelPerformance.comparativePerformance || []} 
+          title="Channel Performance" 
+          filename="channel_performance" 
+        />
+      </div>
+      <ChannelPerformance data={channelPerformance} />
+    </>
+  )}
+
+  {/* Customer 360° Tab */}
+  {activeTab === 'customer' && customerInsights && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={customerInsights.customerSegments || []} 
+          title="Customer Segments" 
+          filename="customer_segments" 
+        />
+      </div>
+      <CustomerInsights data={customerInsights} />
+    </>
+  )}
+
+  {/* Predictive Forecasting Tab */}
+  {activeTab === 'forecast' && predictiveForecasting && (
+    <>
+      <div className="flex justify-end mb-4">
+        <ExportReports 
+          data={predictiveForecasting.recommendedReorderSkus || []} 
+          title="Forecast Recommendations" 
+          filename="forecast_recommendations" 
+        />
+      </div>
+      <PredictiveForecasting data={predictiveForecasting} />
+    </>
+  )}
+</div>
       </div>
 
       {/* Footer - outside the container but inside the flex column */}
