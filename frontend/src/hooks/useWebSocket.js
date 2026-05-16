@@ -16,6 +16,8 @@ export const useWebSocket = () => {
             console.log('WebSocket connected');
             setIsConnected(true);
         };
+        const WS_URL =
+            import.meta.env.VITE_WS_URL || `wss://omnichannel-retail-command-6bk0.onrender.com`;
 
         socket.onmessage = (event) => {
             try {

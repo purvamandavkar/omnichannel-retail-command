@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { getDashboardData, randomizeDashboard } from './dataManager.js';
 
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -37,29 +38,40 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Backend running on http://localhost:${PORT}`);
 });
-
 import { WebSocketServer } from 'ws';
 
-const wss = new WebSocketServer({ port: 8080 });
+// Create HTTP server first
+import http from 'http';
+const server = http.createServer(app);
+
+// Create WebSocket server
+const wss = new WebSocketServer({ server });
 
 wss.on('connection', (ws) => {
-    console.log('Client connected');
+    console.log('WebSocket client connected');
 
-    // Send real-time updates every 5 seconds (simulating live sales)
-    const interval = setInterval(async() => {
-        const newSale = {
-            id: Date.now(),
-            product_name: ['Laptop', 'Phone', 'Tablet', 'Headphones'][Math.floor(Math.random() * 4)],
-            sales: Math.floor(100 + Math.random() * 900),
-            timestamp: new Date().toISOString()
-        };
-        ws.send(JSON.stringify({ type: 'new_sale', data: newSale }));
-    }, 5000);
+    // Send a test message every 10 seconds
+    const interval = setInterval(() => {
+        if (ws.readyState === ws.OPEN) {
+            ws.send(JSON.stringify({
+                type: 'new_sale',
+                data: {
+                    product_name: ['Laptop Pro', 'Smart Watch', 'Wireless Headphones', 'Tablet Air'][Math.floor(Math.random() * 4)],
+                    sales: Math.floor(100 + Math.random() * 900),
+                    timestamp: new Date().toISOString()
+                }
+            }));
+        }
+    }, 10000);
 
     ws.on('close', () => {
         clearInterval(interval);
-        console.log('Client disconnected');
+        console.log('WebSocket client disconnected');
     });
 });
 
-console.log('WebSocket server running on ws://localhost:8080');
+// Use the same server instead of app.listen
+server.listen(PORT, () => {
+    console.log(`Backend running on http://localhost:${PORT}`);
+    console.log(`WebSocket server running on ws://localhost:${PORT}`);
+});
