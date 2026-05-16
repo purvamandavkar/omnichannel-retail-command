@@ -1,6 +1,7 @@
 {
-    "name": "retail-command-frontend",
+    "name": "omnichannel-retail-frontend",
     "version": "1.0.0",
+    "private": true,
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -8,25 +9,20 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "axios": "^1.5.0",
-        "file-saver": "^2.0.5",
-        "jspdf": "^4.2.1",
-        "jspdf-autotable": "^5.0.7",
-        "lucide-react": "^0.294.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^7.14.0",
-        "recharts": "^2.9.0",
-        "socket.io-client": "^4.8.3",
-        "xlsx": "^0.18.5"
+        "react-router-dom": "^6.20.0",
+        "axios": "^1.6.0",
+        "recharts": "^2.10.0",
+        "lucide-react": "^0.300.0"
     },
     "devDependencies": {
-        "@types/react": "^18.2.15",
-        "@types/react-dom": "^18.2.7",
-        "@vitejs/plugin-react": "^5.0.0",
-        "autoprefixer": "^10.4.15",
-        "postcss": "^8.4.29",
-        "tailwindcss": "^3.3.3",
-        "vite": "^5.4.0"
+        "@types/react": "^18.2.43",
+        "@types/react-dom": "^18.2.17",
+        "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.16",
+        "postcss": "^8.4.32",
+        "tailwindcss": "^3.4.0",
+        "vite": "^5.0.8"
     }
 }
