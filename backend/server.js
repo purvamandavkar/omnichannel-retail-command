@@ -158,7 +158,7 @@ app.get('/api/db/stats', async(req, res) => {
     }
 });
 
-Real - time sales data
+//Real - time sales data
 app.get('/api/db/sales', async(req, res) => {
     try {
         const data = await getRealTimeSales();

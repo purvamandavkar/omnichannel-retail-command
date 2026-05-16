@@ -8,12 +8,9 @@ export const useWebSocket = () => {
     const reconnectTimeoutRef = useRef(null);
 
     // Get WebSocket URL from environment variable or use default
-    const WS_URL =
-        import.meta.env.VITE_WS_URL ||
-        (window.location.protocol === 'https:' ?
-            `wss://${window.location.hostname}` :
-            `ws://localhost:5000`);
 
+    const WS_URL =
+        import.meta.env.VITE_WS_URL || 'ws://localhost:5000';
     useEffect(() => {
         const connectWebSocket = () => {
             try {
