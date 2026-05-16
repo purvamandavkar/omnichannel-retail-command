@@ -7,8 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/retail_db',
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    connectionString: 'postgresql://retail_user:FXvUoRsH931g59IMybjBZZUhFYeH0w4W-d842f557vvec73esd14g-a:5432/retail_db_28pv?sslmode=require'
 });
 
 async function importCSV() {
