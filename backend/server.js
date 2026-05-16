@@ -130,3 +130,57 @@ server.listen(PORT, () => {
     console.log(`🔌 WebSocket server running on ws://localhost:${PORT}`);
     console.log(`📡 Waiting for WebSocket connections...`);
 });
+import {
+    initDatabase,
+    getRealTimeSales,
+    getTopProducts,
+    getInventoryAlerts,
+    getTotalSales,
+    getOrderCount
+} from './db-postgres.js';
+
+// Initialize database on startup
+await initDatabase();
+
+// Database statistics endpoint
+app.get('/api/db/stats', async(req, res) => {
+    try {
+        const totalSales = await getTotalSales();
+        const orderCount = await getOrderCount();
+        res.json({ totalSales, orderCount });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Real-time sales data
+app.get('/api/db/sales', async(req, res) => {
+    try {
+        const data = await getRealTimeSales();
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Top products
+app.get('/api/db/top-products', async(req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 5;
+        const data = await getTopProducts(limit);
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Inventory alerts
+app.get('/api/db/alerts', async(req, res) => {
+    try {
+        const threshold = parseInt(req.query.threshold) || 10;
+        const data = await getInventoryAlerts(threshold);
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
