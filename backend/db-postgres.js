@@ -1,10 +1,16 @@
 import pkg from 'pg';
 const { Pool } = pkg;
+import dotenv from 'dotenv';
+dotenv.config();
+
+console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+
 
 // Use Render's connection string or local
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/retail_db',
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }, // Keep this for now
+    connectionTimeoutMillis: 10000,
 });
 
 // Test connection

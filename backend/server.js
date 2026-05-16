@@ -140,8 +140,13 @@ import {
 } from './db-postgres.js';
 
 // Initialize database on startup
-await initDatabase();
 
+// Initialize database (don't let it crash the server)
+try {
+    await initDatabase();
+} catch (err) {
+    console.error('⚠️ Database initialization failed, continuing with limited functionality:', err.message);
+}
 // Database statistics endpoint
 app.get('/api/db/stats', async(req, res) => {
     try {
@@ -153,7 +158,7 @@ app.get('/api/db/stats', async(req, res) => {
     }
 });
 
-// Real-time sales data
+Real - time sales data
 app.get('/api/db/sales', async(req, res) => {
     try {
         const data = await getRealTimeSales();
